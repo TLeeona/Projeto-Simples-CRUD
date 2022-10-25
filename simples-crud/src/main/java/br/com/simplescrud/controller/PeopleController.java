@@ -31,3 +31,8 @@ public class PeopleController {
     public ResponseEntity<Object> saveOnePerson(@PathVariable(value = "id") UUID id) {
         return peopleService.getOnePerson(id);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletePerson(@PathVariable(value = "id") UUID id) {
+        return peopleService.deletePerson(id);
+    }

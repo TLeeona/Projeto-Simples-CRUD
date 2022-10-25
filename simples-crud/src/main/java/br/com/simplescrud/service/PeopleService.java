@@ -43,4 +43,13 @@ public class PeopleService {
         return ResponseEntity.status(HttpStatus.OK).body(peopleModelOptional.get());
     }
 
+    @Transactional
+    public ResponseEntity<Object> deletePerson(UUID id) {
+        Optional<PeopleModel> peopleModelOptional = peopleRepository.findById(id);
+        if (!peopleModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found.");
+        }
+        peopleRepository.delete(peopleModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Person deleted successfully.");
+    }
 }
