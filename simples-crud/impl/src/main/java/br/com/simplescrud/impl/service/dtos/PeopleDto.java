@@ -1,9 +1,8 @@
-package br.com.simplescrud.dtos;
+package br.com.simplescrud.impl.service.dtos;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Data

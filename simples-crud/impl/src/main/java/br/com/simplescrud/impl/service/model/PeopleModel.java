@@ -1,8 +1,8 @@
-package br.com.simplescrud.model;
+package br.com.simplescrud.impl.service.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,7 +14,7 @@ import java.util.UUID;
 public class PeopleModel implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column(nullable = true, length = 70)
     private LocalDateTime registrationDate;
