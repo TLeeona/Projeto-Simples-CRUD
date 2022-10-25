@@ -1,7 +1,7 @@
-package br.com.simplescrud.impl.service.repository;
+package br.com.simplescrud.impl.repository;
 
 
-import br.com.simplescrud.impl.service.model.PeopleModel;
+import br.com.simplescrud.impl.model.PeopleModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

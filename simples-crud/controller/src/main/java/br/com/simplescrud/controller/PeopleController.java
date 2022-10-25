@@ -1,14 +1,17 @@
 package br.com.simplescrud.controller;
 
 import br.com.simplescrud.impl.service.PeopleService;
-import br.com.simplescrud.impl.service.dtos.PeopleDto;
-import br.com.simplescrud.impl.service.model.PeopleModel;
+import br.com.simplescrud.impl.dtos.PeopleDto;
+import br.com.simplescrud.impl.model.PeopleModel;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,8 +27,8 @@ public class PeopleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PeopleModel>> getAllPeople() {
-        return peopleService.getAllPeople();
+    public ResponseEntity<Page<PeopleModel>> getAllPeople(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        return peopleService.getAllPeople(pageable);
     }
 
     @GetMapping("/{id}")

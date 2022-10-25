@@ -1,4 +1,4 @@
-package br.com.simplescrud.impl.service.dtos;
+package br.com.simplescrud.impl.dtos;
 
 import lombok.Data;
 

@@ -1,10 +1,12 @@
 package br.com.simplescrud.impl.service;
 
-import br.com.simplescrud.impl.service.dtos.PeopleDto;
-import br.com.simplescrud.impl.service.model.PeopleModel;
-import br.com.simplescrud.impl.service.repository.PeopleRepository;
+import br.com.simplescrud.impl.dtos.PeopleDto;
+import br.com.simplescrud.impl.model.PeopleModel;
+import br.com.simplescrud.impl.repository.PeopleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,8 +34,8 @@ public class PeopleService {
         return ResponseEntity.status(HttpStatus.CREATED).body(peopleRepository.save(saveNewPerson));
     }
 
-    public ResponseEntity<List<PeopleModel>> getAllPeople() {
-        return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.findAll());
+    public ResponseEntity<Page<PeopleModel>> getAllPeople(Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.findAll(pageable));
     }
 
     public ResponseEntity<Object> getOnePerson(UUID id) {

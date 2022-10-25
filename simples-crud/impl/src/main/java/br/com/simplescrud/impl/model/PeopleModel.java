@@ -1,4 +1,4 @@
-package br.com.simplescrud.impl.service.model;
+package br.com.simplescrud.impl.model;
 
 import lombok.Data;
 
