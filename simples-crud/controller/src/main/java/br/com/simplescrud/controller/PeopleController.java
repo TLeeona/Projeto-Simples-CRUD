@@ -1,18 +1,18 @@
 package br.com.simplescrud.controller;
 
-import br.com.simplescrud.dtos.PeopleDto;
-import br.com.simplescrud.model.PeopleModel;
-import br.com.simplescrud.service.PeopleService;
-import jakarta.validation.Valid;
+import br.com.simplescrud.impl.service.PeopleService;
+import br.com.simplescrud.impl.service.dtos.PeopleDto;
+import br.com.simplescrud.impl.service.model.PeopleModel;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/simples-crud")
+@RequestMapping("/Person")
 @AllArgsConstructor
 public class PeopleController {
 
@@ -29,7 +29,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> saveOnePerson(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<Object> getOnePerson(@PathVariable(value = "id") UUID id) {
         return peopleService.getOnePerson(id);
     }
 
