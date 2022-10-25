@@ -1,5 +1,6 @@
 package br.com.simplescrud.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -10,7 +11,6 @@ public class PeopleDto {
 
     @NotBlank
     private String completeName;
-    @NotBlank
     private LocalDate birthDate;
     @NotBlank
     private String email;
