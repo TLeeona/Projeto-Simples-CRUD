@@ -34,4 +34,13 @@ public class PeopleService {
     public ResponseEntity<List<PeopleModel>> getAllPeople() {
         return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.findAll());
     }
+
+    public ResponseEntity<Object> getOnePerson(UUID id) {
+        Optional<PeopleModel> peopleModelOptional = peopleRepository.findById(id);
+        if (!peopleModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(peopleModelOptional.get());
+    }
+
 }

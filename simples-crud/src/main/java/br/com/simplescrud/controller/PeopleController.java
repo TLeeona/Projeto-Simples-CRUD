@@ -26,3 +26,8 @@ public class PeopleController {
     public ResponseEntity<List<PeopleModel>> getAllPeople() {
         return peopleService.getAllPeople();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> saveOnePerson(@PathVariable(value = "id") UUID id) {
+        return peopleService.getOnePerson(id);
+    }
