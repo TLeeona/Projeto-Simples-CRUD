@@ -31,4 +31,7 @@ public class PeopleService {
     return ResponseEntity.status(HttpStatus.CREATED).body(peopleRepository.save(saveNewPerson));
     }
 
+    public ResponseEntity<List<PeopleModel>> getAllPeople() {
+        return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.findAll());
+    }
 }

@@ -22,4 +22,7 @@ public class PeopleController {
         return peopleService.savePerson(peopleDto);
     }
 
-}
+    @GetMapping
+    public ResponseEntity<List<PeopleModel>> getAllPeople() {
+        return peopleService.getAllPeople();
+    }
