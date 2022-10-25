@@ -52,4 +52,30 @@ public class PeopleService {
         peopleRepository.delete(peopleModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body("Person deleted successfully.");
     }
+    @Transactional
+    public ResponseEntity<Object> updatePerson(UUID id, PeopleDto peopleDto) {
+        Optional<PeopleModel> peopleModelOptional = peopleRepository.findById(id);
+
+        if (!peopleModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found.");
+        }
+       var updatePerson = peopleModelOptional.get();
+       updatePerson.setCompleteName(peopleDto.getCompleteName());
+       updatePerson.setBirthDate(peopleDto.getBirthDate());
+       updatePerson.setEmail(peopleDto.getEmail());
+       return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.save(updatePerson));
+
+  //     var updatePerson = peopleModelOptional.get();
+  //     BeanUtils.copyProperties(peopleDto, updatePerson);
+  //     updatePerson.setId(peopleModelOptional.get().getId());
+  //     updatePerson.setRegistrationDate(peopleModelOptional.get().getRegistrationDate());
+  //     return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.save(updatePerson));
+
+        //Optei por setar cada campo manualmente, pois são poucos atributos e garante que o ID e o RegistrationDate
+        //permanecam os mesmos.
+        //Também optei por deixar o segundo feito, dentro dos comentários, para que caso haja a necessidade de aumentar
+        //a quantidade de atributos, o código está pronto para uso.
+
+    }
+
 }

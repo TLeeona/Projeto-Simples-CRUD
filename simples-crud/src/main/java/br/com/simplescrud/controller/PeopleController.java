@@ -36,3 +36,11 @@ public class PeopleController {
     public ResponseEntity<Object> deletePerson(@PathVariable(value = "id") UUID id) {
         return peopleService.deletePerson(id);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updatePerson(@PathVariable(value = "id") UUID id,
+                                               @RequestBody @Valid PeopleDto peopleDto) {
+        return peopleService.updatePerson(id, peopleDto);
+    }
+
+}
