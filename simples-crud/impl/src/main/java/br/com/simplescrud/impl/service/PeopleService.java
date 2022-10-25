@@ -1,15 +1,15 @@
-package br.com.simplescrud.service;
+package br.com.simplescrud.impl.service;
 
-import br.com.simplescrud.dtos.PeopleDto;
-import br.com.simplescrud.model.PeopleModel;
-import br.com.simplescrud.repository.PeopleRepository;
-import jakarta.transaction.Transactional;
+import br.com.simplescrud.impl.service.dtos.PeopleDto;
+import br.com.simplescrud.impl.service.model.PeopleModel;
+import br.com.simplescrud.impl.service.repository.PeopleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -61,17 +61,17 @@ public class PeopleService {
         if (!peopleModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found.");
         }
-       var updatePerson = peopleModelOptional.get();
-       updatePerson.setCompleteName(peopleDto.getCompleteName());
-       updatePerson.setBirthDate(peopleDto.getBirthDate());
-       updatePerson.setEmail(peopleDto.getEmail());
-       return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.save(updatePerson));
+        var updatePerson = peopleModelOptional.get();
+        updatePerson.setCompleteName(peopleDto.getCompleteName());
+        updatePerson.setBirthDate(peopleDto.getBirthDate());
+        updatePerson.setEmail(peopleDto.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.save(updatePerson));
 
-  //     var updatePerson = peopleModelOptional.get();
-  //     BeanUtils.copyProperties(peopleDto, updatePerson);
-  //     updatePerson.setId(peopleModelOptional.get().getId());
-  //     updatePerson.setRegistrationDate(peopleModelOptional.get().getRegistrationDate());
-  //     return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.save(updatePerson));
+        //     var updatePerson = peopleModelOptional.get();
+        //     BeanUtils.copyProperties(peopleDto, updatePerson);
+        //     updatePerson.setId(peopleModelOptional.get().getId());
+        //     updatePerson.setRegistrationDate(peopleModelOptional.get().getRegistrationDate());
+        //     return ResponseEntity.status(HttpStatus.OK).body(peopleRepository.save(updatePerson));
 
         //Optei por setar cada campo manualmente, pois são poucos atributos e garante que o ID e o RegistrationDate
         //permanecam os mesmos.
